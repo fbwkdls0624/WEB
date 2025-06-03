@@ -76,7 +76,7 @@
   <div id="postList"></div>
 <section class="recommended-books">
   <h2>📚 추천 도서 & 자격증 서적</h2>
-  <div class="book-list">
+  <div class="book-list" id="bookList">
     <div class="book-item">
       <img src="images/책1.png" alt="Cracking the Coding Interview" style="width:110px; height:auto;">
       <p><strong>코딩 인터뷰 완전 분석</strong><br>Gayle Laakmann McDowell</p>
@@ -89,7 +89,7 @@
       <img src="images/책3.png" alt="정보처리기사 필기" style="width:110px; height:auto;">
       <p><strong>정보처리기사 필기 한권으로 끝내기</strong></p>
     </div>
-      <div class="book-item">
+    <div class="book-item">
       <img src="images/책4.png" alt="AWS 공인 솔루션스 아키텍트" style="width:110px; height:auto;">
       <p><strong>윤성우의 열혈 C프로그래밍</strong><br>윤성우</p>
     </div>
@@ -101,9 +101,61 @@
       <img src="images/책6.png" alt="SQL 실습" style="width:110px; height:auto;">
       <p><strong>SQL 첫걸음</strong><br>이지스퍼블리싱</p>
     </div>
+    <div class="book-item">
+      <img src="images/책7.png" alt="Do it! 점프 투 파이썬" style="width:110px; height:auto;">
+      <p><strong>Do it! 점프 투 파이썬</strong><br>박응용</p>
+    </div>
+    <div class="book-item">
+      <img src="images/책8.png" alt="모두의 네트워크" style="width:110px; height:auto;">
+      <p><strong>모두의 네트워크</strong><br>이상근</p>
+    </div>
+    <div class="book-item">
+      <img src="images/책9.png" alt="모두의 데이터 분석 with 파이썬" style="width:110px; height:auto;">
+      <p><strong>모두의 데이터 분석 with 파이썬</strong><br>송석리</p>
+    </div>
+    <div class="book-item">
+      <img src="images/책10.png" alt="이것이 취업을 위한 코딩 테스트다" style="width:110px; height:auto;">
+      <p><strong>이것이 취업을 위한 코딩 테스트다</strong><br>나동빈</p>
+    </div>
+    <!-- 추가 서적 끝 -->
+  </div>
+  <div style="text-align:center; margin-top:14px;">
+    <button id="prevBookPage" style="padding:4px 16px; margin-right:8px;">이전</button>
+    <span id="bookPageInfo"></span>
+    <button id="nextBookPage" style="padding:4px 16px; margin-left:8px;">다음</button>
   </div>
 </section>
 </main>
 <script src="script.js"></script>
+<script>
+  // --- 추천 도서 페이징 처리 ---
+  (function() {
+    const books = Array.from(document.querySelectorAll('.book-list .book-item'));
+    const pageSize = 5;
+    let page = 1;
+    const totalPages = Math.ceil(books.length / pageSize);
+    const pageInfo = document.getElementById('bookPageInfo');
+    const prevBtn = document.getElementById('prevBookPage');
+    const nextBtn = document.getElementById('nextBookPage');
+
+    function showPage(p) {
+      books.forEach((el, i) => {
+        el.style.display = (i >= (p-1)*pageSize && i < p*pageSize) ? '' : 'none';
+      });
+      pageInfo.textContent = `${p} / ${totalPages}`;
+      prevBtn.disabled = (p === 1);
+      nextBtn.disabled = (p === totalPages);
+    }
+
+    if (books.length > pageSize) {
+      prevBtn.onclick = function() { if(page>1){ page--; showPage(page); } };
+      nextBtn.onclick = function() { if(page<totalPages){ page++; showPage(page); } };
+      showPage(page);
+    } else {
+      // 5개 이하면 버튼 숨김
+      prevBtn.style.display = nextBtn.style.display = pageInfo.style.display = 'none';
+    }
+  })();
+</script>
 </body>
 </html>

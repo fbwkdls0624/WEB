@@ -4,12 +4,103 @@
   <meta charset="UTF-8" />
   <title>게시글 보기</title>
   <link rel="stylesheet" href="style.css" />
+  <style>
+    body {
+      font-family: 'Noto Sans KR', Arial, sans-serif;
+      background: #f7f9fb;
+      margin: 0;
+      padding: 0;
+    }
+    h1 {
+      text-align: center;
+      margin-top: 32px;
+      color: #174642;
+      font-size: 2.1em;
+      letter-spacing: 1px;
+    }
+    #postView {
+      background: #fff;
+      max-width: 600px;
+      margin: 32px auto 24px auto;
+      padding: 32px 28px 24px 28px;
+      border-radius: 18px;
+      box-shadow: 0 4px 24px #0001, 0 1.5px 0 #b3b3b3;
+      font-size: 1.08em;
+    }
+    #postView h2 {
+      margin-top: 0;
+      color: #0288d1;
+      font-size: 1.5em;
+      margin-bottom: 12px;
+    }
+    #postView p {
+      margin: 8px 0;
+      line-height: 1.7;
+    }
+    #postView hr {
+      border: none;
+      border-top: 1.5px solid #e0e0e0;
+      margin: 18px 0 18px 0;
+    }
+    #postView img {
+      display: block;
+      margin: 18px auto 0 auto;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px #0002;
+      max-width: 100%;
+      max-height: 320px;
+      object-fit: contain;
+    }
+    .post-btns {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+    .post-btns button {
+      font-size: 1em;
+      padding: 8px 24px;
+      border-radius: 10px;
+      border: none;
+      margin: 0 8px;
+      background: #4fc3f7;
+      color: #fff;
+      cursor: pointer;
+      transition: background 0.18s;
+      box-shadow: 0 1px 0 #b3b3b3;
+    }
+    .post-btns button:active {
+      background: #0288d1;
+    }
+    #deleteBtn {
+      background: #e74c3c;
+      color: #fff;
+      margin-left: 8px;
+    }
+    #deleteBtn:active {
+      background: #b71c1c;
+    }
+    @media (max-width: 700px) {
+      #postView {
+        max-width: 98vw;
+        padding: 18px 6vw 18px 6vw;
+      }
+      .post-btns button {
+        width: 90vw;
+        margin: 8px 0;
+        display: block;
+      }
+      .post-btns {
+        margin-bottom: 20px;
+      }
+    }
+  </style>
 </head>
 <body>
   <h1>게시글 보기</h1>
   <div id="postView"></div>
-  <button onclick="location.href='main.html'">← 목록으로</button>
-  <button id="deleteBtn" style="margin-left:10px; color: white; background-color: red;">삭제</button>
+  <div class="post-btns">
+    <button onclick="location.href='main.html'">← 목록으로</button>
+    <button id="deleteBtn">삭제</button>
+  </div>
 
   <script>
     const urlParams = new URLSearchParams(window.location.search);
